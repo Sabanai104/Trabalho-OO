@@ -1,4 +1,4 @@
-package Despesa;
+package despesa;
 
 public class Despesa {
     //Atributos
