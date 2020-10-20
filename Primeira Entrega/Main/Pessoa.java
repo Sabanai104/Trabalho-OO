@@ -8,10 +8,22 @@ public class Pessoa {
 
 
     //Metodos
-    public String getNome() {}
-    public void setNome(String nome){}
-    public String getEmail(){}
-    public void setEmail(String email){}
-    public float getTotalRendimento(){}
-    public float setTotalRendimento(float total){}
+    public String getNome() {
+
+    }
+    public void setNome(String nome){
+
+    }
+    public String getEmail(){
+
+    }
+    public void setEmail(String email){
+
+    }
+    public float getTotalRendimento(){
+
+    }
+    public float setTotalRendimento(float total){
+        
+    }
 }

@@ -1,5 +1,7 @@
 package Main;
 
+import Despesa.Despesa;
+
 public class Republica {
     //Atributos 
     private Pessoa pessoas[];
