@@ -28,11 +28,11 @@ public class Republica {
     
     }
     
-    public float regraIgualitaria(Despesa despesa, Pessoa pessoa) {
+    public float regraIgualitaria(int index) {
         
     }
     
-    public float regraProporcional(Despesa despesa, Pessoa pessoa) {
+    public float regraProporcional(int index) {
         
     }
 }
