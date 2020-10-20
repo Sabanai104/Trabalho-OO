@@ -1,21 +1,23 @@
-package despesa;
+package main.despesa;
+
+import java.util.ArrayList;
 
 public class Categoria {
     //Atributos
     private String descricao;
-    private SubCategoria subCategoria[];
+    private ArrayList<SubCategoria> subCategoria[];
 
     //Métodos
     public String getDescricao() {
 
     }
     public void setDescricao(String descricao) {
+    
+    }
+    public SubCategoria getSubCategoria(int index) {
 
     }
-    public String getSubCategoria() {
-
-    }
-    public void setSubCategoria(SubCategoria subCategoria) {
+    public void setSubCategoria(SubCategoria subCategoria, int index) {
 
     }
     

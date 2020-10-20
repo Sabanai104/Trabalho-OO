@@ -1,4 +1,4 @@
-package despesa;
+package main.despesa;
 
 public class SubCategoria {
     //Atributos

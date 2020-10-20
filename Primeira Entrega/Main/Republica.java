@@ -1,24 +1,30 @@
 package main;
 
-import Despesa.Despesa;
+import main.despesa.Despesa;
+
+import java.util.ArrayList;
 
 public class Republica {
     //Atributos 
-    private Pessoa pessoas[];
-    private Despesa despesas[];    
+    private ArrayList<Pessoa> pessoas;
+    private ArrayList<Despesa> despesas;    
     
     
     //Metodos 
-    public Pessoa getPessoa(){
+    public Pessoa getPessoa(int index){
+        
+    }
+    public void setPessoa(Pessoa pessoa, int index){
+
+    }
+    public void addPessoa() {
+
+    }
+
+    public Despesa getDespesa(int index){
     
     }
-    public void setPessoa(Pessoa pessoa){
-    
-    }
-    public Despesa getDespesa(){
-    
-    }
-    public void setDespesa(Despesa despesa){
+    public void setDespesa(Despesa despesa, int index){
     
     }
     

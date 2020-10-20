@@ -23,7 +23,7 @@ public class Pessoa {
     public float getTotalRendimento(){
 
     }
-    public float setTotalRendimento(float total){
+    public void setTotalRendimento(float total){
         
     }
 }
