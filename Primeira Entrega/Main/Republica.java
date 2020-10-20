@@ -7,24 +7,24 @@ public class Republica {
     
     
     //Metodos 
-    public getPessoa(){
+    public Pessoa getPessoa(){
     
     }
-    public setPessoa(Pessoa pessoa){
+    public void setPessoa(Pessoa pessoa){
     
     }
-    public getDespesa(){
+    public Despesa getDespesa(){
     
     }
-    public setDespesa(Despesa despesa){
+    public void setDespesa(Despesa despesa){
     
     }
     
-    public regraIgualitaria(Despesa despesa, Pessoa pessoa) {
+    public float regraIgualitaria(Despesa despesa, Pessoa pessoa) {
         
     }
     
-    public regraProporcional(Despesa despesa, Pessoa pessoa) {
+    public float regraProporcional(Despesa despesa, Pessoa pessoa) {
         
     }
 }
