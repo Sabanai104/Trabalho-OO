@@ -2,37 +2,35 @@ package main;
 
 import main.despesa.Despesa;
 
-import java.util.ArrayList;
-
 public class Republica {
     //Atributos 
-    private ArrayList<Pessoa> pessoas;
-    private ArrayList<Despesa> despesas;    
+    private Pessoa pessoas;
+    private Despesa despesas;    
     
     
     //Metodos 
-    public Pessoa getPessoa(int index){
+    public Pessoa getPessoa(){
         
     }
-    public void setPessoa(Pessoa pessoa, int index){
+    public void setPessoa(Pessoa pessoa){
 
     }
     public void addPessoa() {
 
     }
 
-    public Despesa getDespesa(int index){
+    public Despesa getDespesa(){
     
     }
-    public void setDespesa(Despesa despesa, int index){
+    public void setDespesa(Despesa despesa){
     
     }
     
-    public float regraIgualitaria(int index) {
+    public float regraIgualitaria() {
         
     }
     
-    public float regraProporcional(int index) {
+    public float regraProporcional() {
         
     }
 }

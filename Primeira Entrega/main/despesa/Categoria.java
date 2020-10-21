@@ -1,11 +1,9 @@
 package main.despesa;
 
-import java.util.ArrayList;
-
 public class Categoria {
     //Atributos
     private String descricao;
-    private ArrayList<SubCategoria> subCategoria[];
+    private SubCategoria subCategoria[];
 
     //Métodos
     public String getDescricao() {
@@ -14,10 +12,10 @@ public class Categoria {
     public void setDescricao(String descricao) {
     
     }
-    public SubCategoria getSubCategoria(int index) {
+    public SubCategoria getSubCategoria() {
 
     }
-    public void setSubCategoria(SubCategoria subCategoria, int index) {
+    public void setSubCategoria(SubCategoria subCategoria,) {
 
     }
     

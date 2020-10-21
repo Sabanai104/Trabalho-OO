@@ -6,7 +6,6 @@ public class Pessoa {
     private String email;
     private float totalRendimento;
 
-
     //Metodos
     public String getNome() {
 

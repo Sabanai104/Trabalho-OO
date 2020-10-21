@@ -1,6 +1,5 @@
 package main.despesa;
 
-
 public class Despesa {
     //Atributos
     private String descricao;
