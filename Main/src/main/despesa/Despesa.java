@@ -1,6 +1,4 @@
-package trabalho_OO.main.despesa;
-
-import trabalho_OO.main.despesa.SubCategoria;
+package main.despesa;
 
 public class Despesa {
     //Atributos

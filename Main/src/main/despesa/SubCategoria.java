@@ -1,4 +1,4 @@
-package trabalho_OO.main.despesa;
+package main.despesa;
 
 public class SubCategoria {
     //Atributos

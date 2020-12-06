@@ -1,10 +1,17 @@
-package trabalho_OO.main;
+package main;
 
 public class Pessoa {
     //Atributos
     private String nome;
     private String email;
     private float totalRendimento;
+    
+    //Construtor
+    public Pessoa(String nome,String email,float rendimento) {   
+        setNome(nome);
+        setEmail(email);
+        setTotalRendimento(rendimento);
+    }
 
     //Metodos
     public String getNome() {
