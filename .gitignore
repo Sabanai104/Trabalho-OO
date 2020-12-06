@@ -1,0 +1,8 @@
+Main/nbproject/private/
+Main/nbproject/Makefile-*.mk
+Main/nbproject/Package-*.bash
+Main/build/
+Main/nbbuild/
+Main/dist/
+Main/nbdist/
+Main/.nb-gradle/
