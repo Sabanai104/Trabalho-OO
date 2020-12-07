@@ -1,9 +1,6 @@
 package main;
 
 import javax.swing.JOptionPane;
-import main.despesa.Categoria;
-import main.despesa.SubCategoria;
-import main.Republica;
 import main.despesa.Despesa;
 
 public class Main {
@@ -44,45 +41,73 @@ public class Main {
         }
         
         static void cadastroDespesa(Republica republica) {
-            String descricao, val, categoria, subCategoria, subCatValidacao;
+            String descricao, val, categoria, subCategoria, subCatValidacao = null;
+            boolean validacao = true;
             
-            descricao = JOptionPane.showInputDialog("Informe a descrição da despesa");
-            float valor = Float.parseFloat(JOptionPane.showInputDialog("Informe o valor da despesa"));
-            categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
-            subCatValidacao = JOptionPane.showInputDialog("A categoria possui uma subCategoria?");
-            
-
-            
-            if("sim".equals(subCatValidacao)) {
-                Despesa despesa = new Despesa(descricao, categoria, valor);
-                republica.setDespesa(despesa);
-                while("sim".equals(subCatValidacao)){ 
-                    subCategoria = JOptionPane.showInputDialog("Me diga a descrição da subCategoria");
-                    despesa.novaSubCategoria(subCategoria);
-                    subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?");
-                }
-            } else {
-               subCategoria = null;
+            while(validacao) {
                 
-                Despesa despesa = new Despesa(descricao, categoria, valor);
-                despesa.novaSubCategoria(subCategoria);
-                republica.setDespesa(despesa);    
+                descricao = JOptionPane.showInputDialog("Informe a descrição da despesa");
+                val = JOptionPane.showInputDialog("Informe o valor da despesa");
+                categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
+                if(!"".equals(categoria))
+                    subCatValidacao = JOptionPane.showInputDialog("A categoria possui uma subCategoria?\n"
+                            + "Responda com 'sim' ou 'nao'."); 
+                try {
+                    validacao = false;
+                    if("".equals(descricao)) {
+                        validacao = true;
+                        throw new DescricaoNaoInformadaException("Erro! Descrição não informada, verifique se preencheu o campo.");
+                    }
+                    
+                    if("".equals(categoria)) {
+                        validacao = true;
+                        throw new CategoriaNaoInformadaException("Erro! Categoria não informada, verifique se preencheu o campo.");
+                    }
+                    
+                    if("".equals(val)) {
+                        validacao = true;
+                        throw new ValorNaoInformadoException("Erro! Valor não informado, verifique se preencheu o campo.");
+                    }
+                    
+                    float valor = Float.parseFloat(val);
+                    
+                    if("sim".equals(subCatValidacao)) {
+                    Despesa despesa = new Despesa(descricao, categoria, valor);
+                    republica.setDespesa(despesa);
+                    while("sim".equals(subCatValidacao)){ 
+                        subCategoria = JOptionPane.showInputDialog("Me diga a descrição da subCategoria");
+                        despesa.novaSubCategoria(subCategoria);
+                        subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?\n"
+                                + "Responda com 'sim' ou 'nao'.");
+                    }
+                } else {
+                   subCategoria = null;
+
+                    Despesa despesa = new Despesa(descricao, categoria, valor);
+                    despesa.novaSubCategoria(subCategoria);
+                    republica.setDespesa(despesa);    
+                }
+                } catch(DescricaoNaoInformadaException | CategoriaNaoInformadaException | ValorNaoInformadoException e) {
+                    String msg = e.getMessage() + "\n"; 
+                    JOptionPane.showMessageDialog(null, msg);
+                }
+
             }
-           
         }
 	
 	public static void main (String[] args) {
             Republica republica = new Republica();
             
             String validacao = "sim";
-            JOptionPane.showMessageDialog(null, "Bem vindo ao República App\n "
+            JOptionPane.showMessageDialog(null, "Bem vindo ao República App\n"
                 + "Vamos cadastrar as pessoas");
             
            
             while("sim".equals(validacao)) {
                cadastroPessoas(republica);
                
-               validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra pessoa?");
+               validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra pessoa?\n"
+                       + "Responda com 'sim' ou 'nao'.");
             }
             
             validacao = "sim";
@@ -91,7 +116,8 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Preencha a despesas desse mês");
                 cadastroDespesa(republica);
                 
-                validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?");
+                validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
+                        + "Responda com 'sim' ou 'nao'.");
             }
             JOptionPane.showMessageDialog(null,republica.toStringPessoa());
             JOptionPane.showMessageDialog(null, republica.toStringDespesa());

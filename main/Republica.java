@@ -45,7 +45,7 @@ public class Republica {
 	Iterator<Pessoa> it = pessoas.iterator();
 	while (it.hasNext()) {
             Pessoa pessoa = it.next();
-            retorno += "Pessoa: " + pessoa.getNome() + "/ " + pessoa.getEmail() + "/ " + "R$" + pessoa.getTotalRendimento() + "\n";
+            retorno += "Pessoa: " + pessoa.getNome() + " // " + pessoa.getEmail() + " // " + "R$" + pessoa.getTotalRendimento() + "\n\n";
 	}
 		
             return retorno;
@@ -58,10 +58,10 @@ public class Republica {
             Despesa despesa = it.next();
             
             if(despesa.printSubCategoria() == null){
-                retorno += "Despesa: " + despesa.getDescricao()+ "/ Valor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n";
+                retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n";
             
             } else { 
-                retorno += "Despesa: " + despesa.getDescricao()+ "/ Valor: " + despesa.getValor()+ "\n Categoria: " + despesa.getCategoria() + "/ " + despesa.printSubCategoria()+ "\n";
+                retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n" + despesa.printSubCategoria()+ "\n";
             }
         }
 		
