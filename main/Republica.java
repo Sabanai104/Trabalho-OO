@@ -7,8 +7,8 @@ import main.despesa.Despesa;
 
 public class Republica {
     //Atributos 
-    List<Despesa> despesas;    
-    List<Pessoa> pessoas;
+    private List<Despesa> despesas;    
+    private List<Pessoa> pessoas;
     
     //Construtor
     public Republica() {
@@ -50,13 +50,20 @@ public class Republica {
 		
             return retorno;
 	}
+    
     public String toStringDespesa() {
         String retorno = ""; 
 	Iterator<Despesa> it = despesas.iterator();
 	while (it.hasNext()) {
             Despesa despesa = it.next();
-            retorno += "Despesa: " + despesa.getDescricao()+ "/ " + despesa.cat+ "/ "  + despesa.getValor()+ "\n";
-	}
+            
+            if(despesa.printSubCategoria() == null){
+                retorno += "Despesa: " + despesa.getDescricao()+ "/ Valor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n";
+            
+            } else { 
+                retorno += "Despesa: " + despesa.getDescricao()+ "/ Valor: " + despesa.getValor()+ "\n Categoria: " + despesa.getCategoria() + "/ " + despesa.printSubCategoria()+ "\n";
+            }
+        }
 		
             return retorno;
 	}

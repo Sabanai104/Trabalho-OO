@@ -44,14 +44,31 @@ public class Main {
         }
         
         static void cadastroDespesa(Republica republica) {
-            String descricao, categoria, val;
+            String descricao, val, categoria, subCategoria, subCatValidacao;
             
             descricao = JOptionPane.showInputDialog("Informe a descrição da despesa");
-            categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
             float valor = Float.parseFloat(JOptionPane.showInputDialog("Informe o valor da despesa"));
+            categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
+            subCatValidacao = JOptionPane.showInputDialog("A categoria possui uma subCategoria?");
             
-            Despesa despesa = new Despesa(descricao, categoria, valor);
-            republica.setDespesa(despesa);
+
+            
+            if("sim".equals(subCatValidacao)) {
+                Despesa despesa = new Despesa(descricao, categoria, valor);
+                republica.setDespesa(despesa);
+                while("sim".equals(subCatValidacao)){ 
+                    subCategoria = JOptionPane.showInputDialog("Me diga a descrição da subCategoria");
+                    despesa.novaSubCategoria(subCategoria);
+                    subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?");
+                }
+            } else {
+               subCategoria = null;
+                
+                Despesa despesa = new Despesa(descricao, categoria, valor);
+                despesa.novaSubCategoria(subCategoria);
+                republica.setDespesa(despesa);    
+            }
+           
         }
 	
 	public static void main (String[] args) {
