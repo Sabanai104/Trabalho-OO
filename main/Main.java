@@ -28,7 +28,7 @@ public class Main {
                     
                     if(rend < 0) {
                         validacao = true;
-                        throw new RendimentoInvalidoException("Erro! Rendimento invalido, verifique que os valores sÃ£o positivos.");
+                        throw new RendimentoInvalidoException("Erro! Rendimento invalido, verifique que os valores são positivos.");
                     }
                     
                     Pessoa pessoa = new Pessoa(nome, email, rend);
@@ -46,7 +46,7 @@ public class Main {
             
             while(validacao) {
                 
-                descricao = JOptionPane.showInputDialog("Informe a descriÃ§Ã£o da despesa");
+                descricao = JOptionPane.showInputDialog("Informe a descrição da despesa");
                 val = JOptionPane.showInputDialog("Informe o valor da despesa");
                 categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
                 if(!"".equals(categoria))
@@ -56,17 +56,17 @@ public class Main {
                     validacao = false;
                     if("".equals(descricao)) {
                         validacao = true;
-                        throw new DescricaoNaoInformadaException("Erro! DescriÃ§Ã£o nÃ£o informada, verifique se preencheu o campo.");
+                        throw new DescricaoNaoInformadaException("Erro! Descrição não informada, verifique se preencheu o campo.");
                     }
                     
                     if("".equals(categoria)) {
                         validacao = true;
-                        throw new CategoriaNaoInformadaException("Erro! Categoria nÃ£o informada, verifique se preencheu o campo.");
+                        throw new CategoriaNaoInformadaException("Erro! Categoria não informada, verifique se preencheu o campo.");
                     }
                     
                     if("".equals(val)) {
                         validacao = true;
-                        throw new ValorNaoInformadoException("Erro! Valor nÃ£o informado, verifique se preencheu o campo.");
+                        throw new ValorNaoInformadoException("Erro! Valor não informado, verifique se preencheu o campo.");
                     }
                     
                     float valor = Float.parseFloat(val);
@@ -75,7 +75,7 @@ public class Main {
                     Despesa despesa = new Despesa(descricao, categoria, valor);
                     republica.setDespesa(despesa);
                     while("sim".equals(subCatValidacao)){ 
-                        subCategoria = JOptionPane.showInputDialog("Me diga a descriÃ§Ã£o da subCategoria");
+                        subCategoria = JOptionPane.showInputDialog("Me diga a descrição da subCategoria");
                         despesa.novaSubCategoria(subCategoria);
                         subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?\n"
                                 + "Responda com 'sim' ou 'nao'.");
@@ -99,7 +99,7 @@ public class Main {
             Republica republica = new Republica();
             
             String validacao = "sim";
-            JOptionPane.showMessageDialog(null, "Bem vindo ao RepÃºblica App\n"
+            JOptionPane.showMessageDialog(null, "Bem vindo ao República App\n"
                 + "Vamos cadastrar as pessoas");
             
            
@@ -113,7 +113,7 @@ public class Main {
             validacao = "sim";
             
             while("sim".equals(validacao)) {
-                JOptionPane.showMessageDialog(null, "Preencha a despesas desse mÃªs");
+                JOptionPane.showMessageDialog(null, "Preencha a despesas desse mês");
                 cadastroDespesa(republica);
                 
                 validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
