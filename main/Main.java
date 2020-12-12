@@ -1,5 +1,8 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import main.despesa.Despesa;
 
@@ -28,7 +31,7 @@ public class Main {
                     
                     if(rend < 0) {
                         validacao = true;
-                        throw new RendimentoInvalidoException("Erro! Rendimento invalido, verifique que os valores são positivos.");
+                        throw new RendimentoInvalidoException("Erro! Rendimento invalido, verifique que os valores sï¿½o positivos.");
                     }
                     
                     Pessoa pessoa = new Pessoa(nome, email, rend);
@@ -46,7 +49,7 @@ public class Main {
             
             while(validacao) {
                 
-                descricao = JOptionPane.showInputDialog("Informe a descrição da despesa");
+                descricao = JOptionPane.showInputDialog("Informe a descriï¿½ï¿½o da despesa");
                 val = JOptionPane.showInputDialog("Informe o valor da despesa");
                 categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
                 if(!"".equals(categoria))
@@ -56,17 +59,17 @@ public class Main {
                     validacao = false;
                     if("".equals(descricao)) {
                         validacao = true;
-                        throw new DescricaoNaoInformadaException("Erro! Descrição não informada, verifique se preencheu o campo.");
+                        throw new DescricaoNaoInformadaException("Erro! Descriï¿½ï¿½o nï¿½o informada, verifique se preencheu o campo.");
                     }
                     
                     if("".equals(categoria)) {
                         validacao = true;
-                        throw new CategoriaNaoInformadaException("Erro! Categoria não informada, verifique se preencheu o campo.");
+                        throw new CategoriaNaoInformadaException("Erro! Categoria nï¿½o informada, verifique se preencheu o campo.");
                     }
                     
                     if("".equals(val)) {
                         validacao = true;
-                        throw new ValorNaoInformadoException("Erro! Valor não informado, verifique se preencheu o campo.");
+                        throw new ValorNaoInformadoException("Erro! Valor nï¿½o informado, verifique se preencheu o campo.");
                     }
                     
                     float valor = Float.parseFloat(val);
@@ -75,7 +78,7 @@ public class Main {
                     Despesa despesa = new Despesa(descricao, categoria, valor);
                     republica.setDespesa(despesa);
                     while("sim".equals(subCatValidacao)){ 
-                        subCategoria = JOptionPane.showInputDialog("Me diga a descrição da subCategoria");
+                        subCategoria = JOptionPane.showInputDialog("Me diga a descriï¿½ï¿½o da subCategoria");
                         despesa.novaSubCategoria(subCategoria);
                         subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?\n"
                                 + "Responda com 'sim' ou 'nao'.");
@@ -91,15 +94,15 @@ public class Main {
                     String msg = e.getMessage() + "\n"; 
                     JOptionPane.showMessageDialog(null, msg);
                 }
-
             }
         }
 	
 	public static void main (String[] args) {
+            String path = "pessoas.txt";
             Republica republica = new Republica();
             
             String validacao = "sim";
-            JOptionPane.showMessageDialog(null, "Bem vindo ao República App\n"
+            JOptionPane.showMessageDialog(null, "Bem vindo ao Repï¿½blica App\n"
                 + "Vamos cadastrar as pessoas");
             
            
@@ -113,7 +116,7 @@ public class Main {
             validacao = "sim";
             
             while("sim".equals(validacao)) {
-                JOptionPane.showMessageDialog(null, "Preencha a despesas desse mês");
+                JOptionPane.showMessageDialog(null, "Preencha a despesas desse mï¿½s");
                 cadastroDespesa(republica);
                 
                 validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
