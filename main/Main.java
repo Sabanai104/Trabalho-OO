@@ -33,7 +33,7 @@ public class Main {
                     
                     if(rend < 0) {
                         validacao = true;
-                        throw new RendimentoInvalidoException("Erro! Rendimento invalido, verifique que os valores sï¿½o positivos.");
+                        throw new RendimentoInvalidoException("Erro! Rendimento invalido, verifique que os valores sao positivos.");
                     }
                     
                     Pessoa pessoa = new Pessoa(nome, email, rend);
@@ -51,7 +51,7 @@ public class Main {
             
             while(validacao) {
                 
-                descricao = JOptionPane.showInputDialog("Informe a descriï¿½ï¿½o da despesa");
+                descricao = JOptionPane.showInputDialog("Informe a descricao da despesa");
                 val = JOptionPane.showInputDialog("Informe o valor da despesa");
                 categoria = JOptionPane.showInputDialog("Informe a categoria da despesa");
                 if(!"".equals(categoria))
@@ -61,17 +61,17 @@ public class Main {
                     validacao = false;
                     if("".equals(descricao)) {
                         validacao = true;
-                        throw new DescricaoNaoInformadaException("Erro! Descriï¿½ï¿½o nï¿½o informada, verifique se preencheu o campo.");
+                        throw new DescricaoNaoInformadaException("Erro! Descricao nao informada, verifique se preencheu o campo.");
                     }
                     
                     if("".equals(categoria)) {
                         validacao = true;
-                        throw new CategoriaNaoInformadaException("Erro! Categoria nï¿½o informada, verifique se preencheu o campo.");
+                        throw new CategoriaNaoInformadaException("Erro! Categoria nao informada, verifique se preencheu o campo.");
                     }
                     
                     if("".equals(val)) {
                         validacao = true;
-                        throw new ValorNaoInformadoException("Erro! Valor nï¿½o informado, verifique se preencheu o campo.");
+                        throw new ValorNaoInformadoException("Erro! Valor nao informado, verifique se preencheu o campo.");
                     }
                     
                     float valor = Float.parseFloat(val);
@@ -80,7 +80,7 @@ public class Main {
                     Despesa despesa = new Despesa(descricao, categoria, valor);
                     republica.setDespesa(despesa);
                     while("sim".equals(subCatValidacao)){ 
-                        subCategoria = JOptionPane.showInputDialog("Me diga a descriï¿½ï¿½o da subCategoria");
+                        subCategoria = JOptionPane.showInputDialog("Me diga a descricao da subCategoria");
                         despesa.novaSubCategoria(subCategoria);
                         subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?\n"
                                 + "Responda com 'sim' ou 'nao'.");
@@ -137,29 +137,97 @@ public class Main {
             Republica republica = new Republica();
             
             String validacao = "sim";
-            JOptionPane.showMessageDialog(null, "Bem vindo ao Repï¿½blica App\n"
-                + "Vamos cadastrar as pessoas");
+            
+           boolean control1 = true;
+            
+            do {
+            
+            String opcao = JOptionPane.showInputDialog("Bem vindo ao RepublicApp\n\n"
+                    + "Digite a opção desejada:\n"
+                    + "1)Cadastros\n"
+                    + "2)Calculo despesas");
+            
+            switch (opcao){
+            
+            
+            
+            case "1":
+            	
+            	while("sim".equals(validacao)) {
+            		cadastroPessoas(republica);
+            		
+            		validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra pessoa?\n"
+            				+ "Responda com 'sim' ou 'nao'.");
+            	}
+            	
+            	validacao = "sim";
+            	
+            	while("sim".equals(validacao)) {
+            		JOptionPane.showMessageDialog(null, "Preencha a despesas desse mes");
+            		cadastroDespesa(republica);
+            		
+            		validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
+            				+ "Responda com 'sim' ou 'nao'.");
+            	}
+            	JOptionPane.showMessageDialog(null,republica.toStringPessoa());
+            	JOptionPane.showMessageDialog(null, republica.toStringDespesa());
+            
+            	control1 = true;
+            	
+            	break;
+
+            
+            case "2":
+
+            	boolean control2 = false;
+            	
+            	do {
+            	
+            	opcao = JOptionPane.showInputDialog("1)Regra igualitaria\n"
+                        + "2)Regra proporcional");
+            	
+            	
+            	
+            		switch (opcao) {
+            	
+            			case "1":
+            				
+            				control2 = true;
+            				
+            				break;
+            	
+            			case "2":
+            				
+            				control2 = true;
+            	
+            				break;
+            	
+            			default:
+            		
+            				JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
+            		
+            				control2 = false;
+            		
+            				break;
+            				
+            		}
+            	} while(control2 == false);
+            
+            	control1 = true;
+            	
+            	break;
+            	
+            	default:
+            	
+            	JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
+            	
+            	control1 = false;
+            	
+            	break;
+            }
             
            
-            while("sim".equals(validacao)) {
-               cadastroPessoas(republica);
-               
-               validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra pessoa?\n"
-                       + "Responda com 'sim' ou 'nao'.");
-            }
-            
-            validacao = "sim";
-            
-            while("sim".equals(validacao)) {
-                JOptionPane.showMessageDialog(null, "Preencha a despesas desse mï¿½s");
-                cadastroDespesa(republica);
-                
-                validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
-                        + "Responda com 'sim' ou 'nao'.");
-            }
-            JOptionPane.showMessageDialog(null,republica.toStringPessoa());
-            JOptionPane.showMessageDialog(null, republica.toStringDespesa());
-        }
+        }while(control1 == false);
  }
-
+}
 
