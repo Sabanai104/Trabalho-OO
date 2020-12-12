@@ -3,6 +3,8 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 import main.despesa.Despesa;
 
@@ -97,8 +99,41 @@ public class Main {
             }
         }
 	
+    static final String nomeArquivoPessoa = "pessoas.txt";
+    
+    static void lerArquivoPessoas(Republica republica) throws IOException {
+    	Scanner s = null; 
+		BufferedReader entrada = null;
+		
+		try {
+			
+			entrada = new BufferedReader(new FileReader(nomeArquivoPessoa));
+
+			String linha; 
+			while ((linha = entrada.readLine()) != null) {
+				
+				s = new Scanner(linha);
+				s.useDelimiter(";");
+				
+				String nome = s.next();
+				String email = s.next();
+				float rendimento = s.nextFloat();
+				
+				Pessoa p = new Pessoa(nome, email, rendimento);
+				republica.setPessoa(p);
+			}
+				
+		} catch (Exception e){
+			String msg = e.getMessage() + "\n"; 
+            JOptionPane.showMessageDialog(null, msg);
+		}finally {
+			if (entrada != null)
+				entrada.close();
+		}
+    }
+        
 	public static void main (String[] args) {
-            String path = "pessoas.txt";
+
             Republica republica = new Republica();
             
             String validacao = "sim";
