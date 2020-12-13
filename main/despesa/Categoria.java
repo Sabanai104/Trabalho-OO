@@ -33,7 +33,7 @@ public class Categoria{
             if(subCategoria.getDescricaoSub() == null)
                 return null;
             else
-                retorno += "subCategorias: " + subCategoria.getDescricaoSub()+ "\n";
+                retorno += subCategoria.getDescricaoSub()+ "\n";
 	}
 		
             return retorno;

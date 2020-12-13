@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -37,14 +38,51 @@ public class Republica {
       despesas.add(despesa);
     }
     
-    public float regraIgualitaria() {
+    public void regraIgualitaria() {
+    	Iterator<Despesa> itd = despesas.iterator();
+    	float despesasSoma = 0;
     	
-    	return 0;
-        
+    	int quantidadePessoas = pessoas.size();
+    	
+    	while (itd.hasNext()) {
+    		Despesa d = itd.next();
+    		despesasSoma += d.getValor();
+    	}
+    	float div = despesasSoma / quantidadePessoas;
+    	
+    	String msg = "Cada pessoa pagará:" + div +"\n";
+    	
+    	JOptionPane.showMessageDialog(null, msg);
     }
     
-    public float regraProporcional() {
-        return 0;
+    public void regraProporcional() {
+    	
+    	Iterator<Pessoa> itp = pessoas.iterator();
+    	Iterator<Pessoa> it = pessoas.iterator();
+    	Iterator<Despesa> itd = despesas.iterator();
+    	float rendaTotal = 0;
+    	float despesasSoma = 0; 
+    	double result = 0;
+    	
+    	
+    	while (itd.hasNext()) {
+    		Despesa d = itd.next();
+    		despesasSoma += d.getValor();
+    	}
+    	
+    	while (itp.hasNext()) {
+    		Pessoa p = itp.next();
+    		rendaTotal += p.getTotalRendimento(); 
+    	}
+    	
+    	String msg ="";
+    	
+    	while(it.hasNext()) {
+    		Pessoa P = it.next();
+    		result = (despesasSoma * P.getTotalRendimento()) / rendaTotal;
+    		msg += "Nome: " + P.getNome() + " Pagará " + result + "\n";
+    	}
+    	JOptionPane.showMessageDialog(null, msg);    	
     }
     
     public String toStringPessoa() {
@@ -86,7 +124,7 @@ public class Republica {
     public String toStringDespesa() {
         String retorno = ""; 
         String resposta = "";
-	Iterator<Despesa> it = despesas.iterator();
+        Iterator<Despesa> it = despesas.iterator();
 	while (it.hasNext()) {
             Despesa despesa = it.next();
             
@@ -95,7 +133,7 @@ public class Republica {
                 resposta += despesa.getDescricao() + " / " + despesa.getCategoria() + " / " + despesa.getValor() + "\n";
             } else { 
                 retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n" + despesa.printSubCategoria()+ "\n";
-                resposta += despesa.getDescricao() + ";" + despesa.getCategoria() + ";" + despesa.getValor() + despesa.printSubCategoria() + "\n";
+                resposta += despesa.getDescricao() + ";" + despesa.printSubCategoria() + ";" + despesa.getValor() + "\n";
             }
         }
         

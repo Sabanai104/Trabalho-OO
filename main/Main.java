@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -131,8 +132,44 @@ public class Main {
 				entrada.close();
 		}
     }
+    
+    static final  Calendar calendario =  Calendar.getInstance();
+    static final int mes = calendario.get(Calendar.MONTH);
+    static final int ano = calendario.get(Calendar.YEAR);
+    static final String nomeArquivoDespesa = "depesas" +"_"+ Integer.toString(mes)+ "_" + Integer.toString(ano) + ".txt";
+    
+    static void lerArquivoDespesas(Republica republica) throws IOException {
+    	Scanner s = null; 
+		BufferedReader entrada = null;
+		
+		try {
+			
+			entrada = new BufferedReader(new FileReader(nomeArquivoDespesa));
+
+			String linha; 
+			while ((linha = entrada.readLine()) != null) {
+				
+				s = new Scanner(linha);
+				s.useDelimiter(";");
+				
+				String nomeDespesa = s.next();
+				String catSubcat = s.next();
+				float valor = s.nextFloat();
+				
+				Despesa D = new Despesa(nomeDespesa, catSubcat, valor);
+				republica.setDespesa(D);
+			}
+				
+		} catch (Exception e){
+			String msg = e.getMessage() + "\n"; 
+            JOptionPane.showMessageDialog(null, msg);
+		}finally {
+			if (entrada != null)
+				entrada.close();
+		}
+    }
         
-	public static void main (String[] args) {
+	public static void main (String[] args) throws IOException {
 
             Republica republica = new Republica();
             
@@ -193,12 +230,17 @@ public class Main {
             			case "1":
             				
             				control2 = true;
+            				lerArquivoDespesas(republica);
+            				lerArquivoPessoas(republica);
+            				republica.regraIgualitaria();
             				
             				break;
             	
             			case "2":
-            				
             				control2 = true;
+            				lerArquivoDespesas(republica);
+            				lerArquivoPessoas(republica);
+            				republica.regraProporcional();
             	
             				break;
             	
@@ -228,6 +270,6 @@ public class Main {
             
            
         }while(control1 == false);
- }
+	}
 }
 
