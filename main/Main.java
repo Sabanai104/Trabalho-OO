@@ -171,14 +171,14 @@ public class Main {
     }
         
 	public static void main (String[] args) throws IOException {
-		Republica republica = new Republica();
+	Republica republica = new Republica();
         String validacao = "sim";   
         boolean control1 = true;
             
         do {
             
             String opcao = JOptionPane.showInputDialog("Bem vindo ao RepublicApp\n\n"
-                    + "Digite a opção desejada:\n"
+                    + "Digite a opï¿½ï¿½o desejada:\n"
                     + "1)Cadastros\n"
                     + "2)Calculo despesas");
             
@@ -200,7 +200,7 @@ public class Main {
 	            	}
 	            	JOptionPane.showMessageDialog(null,republica.toStringPessoa());
 	            	JOptionPane.showMessageDialog(null, republica.toStringDespesa());
-	            	control1 = true;
+	            	control1 = false;
 	            	
 	            	break;
 	            case "2":
@@ -231,7 +231,7 @@ public class Main {
 		            				
 		            		}
 	            	} while(control2 == false);
-	            	control1 = true;
+	            	control1 = false;
 	            	break;
 	            default:
 	            	JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
