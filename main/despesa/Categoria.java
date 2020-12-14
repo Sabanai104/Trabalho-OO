@@ -26,15 +26,15 @@ public class Categoria{
     }
     
     public String toStringSub() {
-       String retorno = ""; 
-       Iterator<SubCategoria> it = subCategorias.iterator();
-	while (it.hasNext()) {
-            SubCategoria subCategoria = it.next();
-            if(subCategoria.getDescricaoSub() == null)
-                return null;
-            else
-                retorno += subCategoria.getDescricaoSub()+ "\n";
-	}
+    	String retorno = ""; 
+    	Iterator<SubCategoria> it = subCategorias.iterator();
+		while (it.hasNext()) {
+	            SubCategoria subCategoria = it.next();
+	            if(subCategoria.getDescricaoSub() == null)
+	                return null;
+	            else
+	                retorno += subCategoria.getDescricaoSub();
+		}
 		
             return retorno;
 	}

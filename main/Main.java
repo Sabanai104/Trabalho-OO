@@ -78,21 +78,21 @@ public class Main {
                     float valor = Float.parseFloat(val);
                     
                     if("sim".equals(subCatValidacao)) {
-                    Despesa despesa = new Despesa(descricao, categoria, valor);
-                    republica.setDespesa(despesa);
-                    while("sim".equals(subCatValidacao)){ 
-                        subCategoria = JOptionPane.showInputDialog("Me diga a descricao da subCategoria");
-                        despesa.novaSubCategoria(subCategoria);
-                        subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?\n"
-                                + "Responda com 'sim' ou 'nao'.");
-                    }
-                } else {
-                   subCategoria = null;
-
-                    Despesa despesa = new Despesa(descricao, categoria, valor);
-                    despesa.novaSubCategoria(subCategoria);
-                    republica.setDespesa(despesa);    
-                }
+	                    Despesa despesa = new Despesa(descricao, categoria, valor);
+	                    republica.setDespesa(despesa);
+	                    while("sim".equals(subCatValidacao)){ 
+	                        subCategoria = JOptionPane.showInputDialog("Me diga a descricao da subCategoria");
+	                        despesa.novaSubCategoria(subCategoria);
+	                        subCatValidacao = JOptionPane.showInputDialog("Quer adicionar outra subCategoria?\n"
+	                                + "Responda com 'sim' ou 'nao'.");
+	                    }
+	                } else {
+	                    subCategoria = null;
+	
+	                    Despesa despesa = new Despesa(descricao, categoria, valor);
+	                    despesa.novaSubCategoria(subCategoria);
+	                    republica.setDespesa(despesa);    
+	                }
                 } catch(DescricaoNaoInformadaException | CategoriaNaoInformadaException | ValorNaoInformadoException e) {
                     String msg = e.getMessage() + "\n"; 
                     JOptionPane.showMessageDialog(null, msg);
@@ -106,21 +106,22 @@ public class Main {
     	Scanner s = null; 
 		BufferedReader entrada = null;
 		
+		
 		try {
 			
 			entrada = new BufferedReader(new FileReader(nomeArquivoPessoa));
-
 			String linha; 
 			while ((linha = entrada.readLine()) != null) {
-				
 				s = new Scanner(linha);
 				s.useDelimiter(";");
 				
 				String nome = s.next();
 				String email = s.next();
-				float rendimento = s.nextFloat();
+				String rendimentoString = s.next();
 				
-				Pessoa p = new Pessoa(nome, email, rendimento);
+				Float rendimentoFloat = Float.parseFloat(rendimentoString);
+				
+				Pessoa p = new Pessoa(nome, email, rendimentoFloat);
 				republica.setPessoa(p);
 			}
 				
@@ -136,7 +137,7 @@ public class Main {
     static final  Calendar calendario =  Calendar.getInstance();
     static final int mes = calendario.get(Calendar.MONTH);
     static final int ano = calendario.get(Calendar.YEAR);
-    static final String nomeArquivoDespesa = "depesas" +"_"+ Integer.toString(mes)+ "_" + Integer.toString(ano) + ".txt";
+    static final String nomeArquivoDespesa = "despesas" +"_"+ Integer.toString(mes)+ "_" + Integer.toString(ano) + ".txt";
     
     static void lerArquivoDespesas(Republica republica) throws IOException {
     	Scanner s = null; 
@@ -145,16 +146,16 @@ public class Main {
 		try {
 			
 			entrada = new BufferedReader(new FileReader(nomeArquivoDespesa));
-
 			String linha; 
 			while ((linha = entrada.readLine()) != null) {
-				
 				s = new Scanner(linha);
 				s.useDelimiter(";");
 				
 				String nomeDespesa = s.next();
 				String catSubcat = s.next();
-				float valor = s.nextFloat();
+				String val = s.next();
+				
+				Float valor = Float.parseFloat(val);
 				
 				Despesa D = new Despesa(nomeDespesa, catSubcat, valor);
 				republica.setDespesa(D);
@@ -170,14 +171,11 @@ public class Main {
     }
         
 	public static void main (String[] args) throws IOException {
-
-            Republica republica = new Republica();
+		Republica republica = new Republica();
+        String validacao = "sim";   
+        boolean control1 = true;
             
-            String validacao = "sim";
-            
-           boolean control1 = true;
-            
-            do {
+        do {
             
             String opcao = JOptionPane.showInputDialog("Bem vindo ao RepublicApp\n\n"
                     + "Digite a opção desejada:\n"
@@ -185,88 +183,61 @@ public class Main {
                     + "2)Calculo despesas");
             
             switch (opcao){
-            
-            
-            
-            case "1":
-            	
-            	while("sim".equals(validacao)) {
-            		cadastroPessoas(republica);
-            		
-            		validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra pessoa?\n"
-            				+ "Responda com 'sim' ou 'nao'.");
-            	}
-            	
-            	validacao = "sim";
-            	
-            	while("sim".equals(validacao)) {
-            		JOptionPane.showMessageDialog(null, "Preencha a despesas desse mes");
-            		cadastroDespesa(republica);
-            		
-            		validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
-            				+ "Responda com 'sim' ou 'nao'.");
-            	}
-            	JOptionPane.showMessageDialog(null,republica.toStringPessoa());
-            	JOptionPane.showMessageDialog(null, republica.toStringDespesa());
-            
-            	control1 = true;
-            	
-            	break;
+	            case "1":
+	            	while("sim".equals(validacao)) {
+	            		cadastroPessoas(republica);
+	            		validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra pessoa?\n"
+	            				+ "Responda com 'sim' ou 'nao'.");
+	            	}
+	            	validacao = "sim";
+	            	
+	            	while("sim".equals(validacao)) {
+	            		JOptionPane.showMessageDialog(null, "Preencha a despesas desse mes");
+	            		cadastroDespesa(republica);
+	            		
+	            		validacao = JOptionPane.showInputDialog("Gostaria de cadastrar outra despesa?\n"
+	            				+ "Responda com 'sim' ou 'nao'.");
+	            	}
+	            	JOptionPane.showMessageDialog(null,republica.toStringPessoa());
+	            	JOptionPane.showMessageDialog(null, republica.toStringDespesa());
+	            	control1 = true;
+	            	
+	            	break;
+	            case "2":
+	            	boolean control2 = false;
+	            	do {
+		            	opcao = JOptionPane.showInputDialog("1)Regra igualitaria\n"
+		                        + "2)Regra proporcional");
 
-            
-            case "2":
-
-            	boolean control2 = false;
-            	
-            	do {
-            	
-            	opcao = JOptionPane.showInputDialog("1)Regra igualitaria\n"
-                        + "2)Regra proporcional");
-            	
-            	
-            	
-            		switch (opcao) {
-            	
-            			case "1":
-            				
-            				control2 = true;
-            				lerArquivoDespesas(republica);
-            				lerArquivoPessoas(republica);
-            				republica.regraIgualitaria();
-            				
-            				break;
-            	
-            			case "2":
-            				control2 = true;
-            				lerArquivoDespesas(republica);
-            				lerArquivoPessoas(republica);
-            				republica.regraProporcional();
-            	
-            				break;
-            	
-            			default:
-            		
-            				JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
-            		
-            				control2 = false;
-            		
-            				break;
-            				
-            		}
-            	} while(control2 == false);
-            
-            	control1 = true;
-            	
-            	break;
-            	
-            	default:
-            	
-            	JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
-            	
-            	control1 = false;
-            	
-            	break;
-            }
+		            		switch (opcao) {
+		            			case "1":
+		            				control2 = true;
+		            				lerArquivoDespesas(republica);
+		            				lerArquivoPessoas(republica);
+		            				republica.regraIgualitaria();
+		            				break;
+		            	
+		            			case "2":
+		            				control2 = true;
+		            				lerArquivoDespesas(republica);
+		            				lerArquivoPessoas(republica);
+		            				republica.regraProporcional();
+		            				break;
+		            	
+		            			default:
+		            				JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
+		            				control2 = false;
+		            				break;
+		            				
+		            		}
+	            	} while(control2 == false);
+	            	control1 = true;
+	            	break;
+	            default:
+	            	JOptionPane.showMessageDialog(null,"Erro! Opcao invalida");
+	            	control1 = false;
+	            	break;
+	            }
             
            
         }while(control1 == false);

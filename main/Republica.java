@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -89,12 +88,12 @@ public class Republica {
         
         String retorno = ""; 
         String resposta = "";
-	Iterator<Pessoa> it = pessoas.iterator();
-	while (it.hasNext()) {
-            Pessoa pessoa = it.next();
-            retorno += "Pessoa: " + pessoa.getNome() + " // " + pessoa.getEmail() + " // " + "R$" + pessoa.getTotalRendimento() + "\n\n";
-            resposta += pessoa.getNome() + ";" + pessoa.getEmail() + ";" + pessoa.getTotalRendimento() + "\n";
-	}	
+        Iterator<Pessoa> it = pessoas.iterator();
+		while (it.hasNext()) {
+	            Pessoa pessoa = it.next();
+	            retorno += "Pessoa: " + pessoa.getNome() + " // " + pessoa.getEmail() + " // " + "R$" + pessoa.getTotalRendimento() + "\n\n";
+	            resposta += pessoa.getNome() + ";" + pessoa.getEmail() + ";" + pessoa.getTotalRendimento() + "\n";
+		}	
         
         FileWriter arquivo;
         PrintWriter gravarArquivo;
@@ -125,17 +124,16 @@ public class Republica {
         String retorno = ""; 
         String resposta = "";
         Iterator<Despesa> it = despesas.iterator();
-	while (it.hasNext()) {
-            Despesa despesa = it.next();
-            
-            if(despesa.printSubCategoria() == null){
-                retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n";
-                resposta += despesa.getDescricao() + " / " + despesa.getCategoria() + " / " + despesa.getValor() + "\n";
-            } else { 
-                retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n" + despesa.printSubCategoria()+ "\n";
-                resposta += despesa.getDescricao() + ";" + despesa.printSubCategoria() + ";" + despesa.getValor() + "\n";
-            }
-        }
+		while (it.hasNext()) {
+	            Despesa despesa = it.next();
+	            if(despesa.printSubCategoria() == null){
+	            	retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n";
+	                resposta += despesa.getDescricao() + ";" + despesa.getCategoria() + ";" + despesa.getValor() + "\n";
+	            } else { 
+	                retorno += "Despesa: " + despesa.getDescricao()+ "\nValor: " + despesa.getValor()+ "\nCategoria: " + despesa.getCategoria() + "\n" + despesa.printSubCategoria()+ "\n";
+	                resposta += despesa.getDescricao() + ";" + despesa.printSubCategoria() + ";" + despesa.getValor() + "\n";
+	            }
+	        }
         
         FileWriter arquivo;
         PrintWriter gravarArquivo;
@@ -150,23 +148,23 @@ public class Republica {
         nomeArquivo = nomeArquivo +"_"+ Integer.toString(mes)+ "_" + Integer.toString(ano) + ".txt";
         
         try {
-           File file = new File(nomeArquivo);
-           
-           if(!file.exists()) 
-               arquivo = new FileWriter(file);
-           else 
-               arquivo = new FileWriter(file,true);
-           
-           bufferWriter = new BufferedWriter(arquivo);
-           gravarArquivo = new PrintWriter(bufferWriter);
-           
-           gravarArquivo.print(resposta);
-           gravarArquivo.close();
+	        File file = new File(nomeArquivo);
+	       
+	        if(!file.exists()) 
+	            arquivo = new FileWriter(file);
+	        else 
+	            arquivo = new FileWriter(file,true);
+	       
+	        bufferWriter = new BufferedWriter(arquivo);
+	        gravarArquivo = new PrintWriter(bufferWriter);
+	       
+	        gravarArquivo.print(resposta);
+	        gravarArquivo.close();
            
         } catch(IOException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
         }
 		
-            return retorno;
+        return retorno;
 	}
 }
