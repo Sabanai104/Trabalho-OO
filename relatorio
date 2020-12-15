@@ -1,0 +1,28 @@
+Relatório trabalho OO
+
+Nosso projeto é composto por dois pacotes, main e despesas. Dentro do pacote main está o pacote despesa e as seguintes classes:
+
+Pessoa: 
+Os atributos nome, email e total rendimento (private) e métodos get e set para todos os atributos (public) da classe pessoa utilizaram do conceito de encapsulamento para limitar o acesso a eles, para aumentar a privacidade dos dados e para evitar o uso incorreto do programa.
+Tem os métodos acessores get e set para coletar e informar as informações do usuário no objeto, mesmo ele tendo a característica privada.
+Usado construtor “public Pessoa(String nome,String email,float rendimento)” para criar o objeto em memória.
+
+República: Dentro da classe república foi criada uma lista para pessoas e uma para despesas e foi criado os métodos para calcular a divisão de aluguel, utilizando a regra igualitária e regra proporcional. Utilizado método get e set para acesso às informações. Foi usado também um construtor para criar o objeto em memória.
+
+Main: Onde são chamados os métodos para execução da aplicação. Cadastro de pessoas, despesas e todas as outras funcionalidades da aplicação. Incluindo as exceções para caso algum erro precise ser informado na hora do cadastro.
+
+Classes de exceções:
+Usamos este conceito de orientação a objetos para caso durante a aplicação seja inserida alguma informação diferente da esperada, o usuário seja informado do erro e insira a informação corretamente.
+-CategoriaNaoInformadaException.java
+-DadosPessoaisIncompletosException.java
+-DescricaoNaoInformadaException.java
+-RendimentoInvalidoException.java
+-ValorNaoInformadoException.java
+
+E dentro do pacote despesas estão as classes:
+
+Categoria: Que tem como atributos a descrição da categoria e uma LinkedList de subcategoria, que é uma subclasse de categoria. Para acessar de forma sequencial essa lista, nós utilizamos o Iterator. Também foram utilizados os métodos get e set para acesso às informações. Foi usado também um construtor para criar o objeto em memória.
+
+Subcategoria: Aqui foi utilizado o conceito de herança. Como subcategoria é uma subclasse de categoria, foi utilizado o extends e o super() que chama o construtor da classe mãe para ter acesso ao atributo descrição da categoria. Utilizado método get e set para acesso às informações. Foi usado também um construtor para criar o objeto em memória.
+
+Despesa: Também foram utilizados construtores e  métodos get e set, além desses métodos, foi implementado método para adicionar uma subcategoria e para retorná-la.
